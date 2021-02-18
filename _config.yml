@@ -6,7 +6,6 @@
 # --- Required options --- #
 baseurl:            "/"
 # Name of website
-title: Blog acabe10
 
 # Your name to show in the footer
 author: Alejandro Cabezas
