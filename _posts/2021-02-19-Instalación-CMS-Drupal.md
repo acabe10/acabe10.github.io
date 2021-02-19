@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Instalación local de un CMS PHP
+title: Instalación CMS Drupal
 tags: [CMS, PHP, LAMP, Drupal, Wordpress]
 ---
 # Introducción
