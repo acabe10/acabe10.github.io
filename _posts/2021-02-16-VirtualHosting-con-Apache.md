@@ -9,7 +9,7 @@ Buenas, en esta práctica vamos a hacer una pequeña introducción al Virtualhos
 
 ## Introducción al VirtualHosting
 
-El término Hosting Virtual se refiere a hacer funcionar más de un sitio web (tales como www.company1.com y www.company2.com) en una sola máquina. Los sitios web virtuales pueden estar “basados en direcciones IP”, lo que significa que cada sitio web tiene una dirección IP diferente, o “basados en nombres diferentes”, lo que significa que con una sola dirección IP están funcionando sitios web con diferentes nombres (de dominio). Apache fue uno de los primeros servidores web en soportar hosting virtual basado en direcciones IP.
+El término Hosting Virtual se refiere a hacer funcionar más de un sitio web (tales como <code>www.company1.com</code> y <code>www.company2.com</code>) en una sola máquina. Los sitios web virtuales pueden estar “basados en direcciones IP”, lo que significa que cada sitio web tiene una dirección IP diferente, o “basados en nombres diferentes”, lo que significa que con una sola dirección IP están funcionando sitios web con diferentes nombres (de dominio). Apache fue uno de los primeros servidores web en soportar hosting virtual basado en direcciones IP.
 
 El servidor web Apache2 se instala por defecto con un host virtual. La configuración de este sitio la podemos encontrar en:
 
@@ -29,7 +29,7 @@ Cuyo contenido podemos ver:
 </VirtualHost>
 ~~~
 
-Y por defecto este sitio virtual está habilitado, por lo que podemos comprobar que existe un enlace simbólico a este fichero en el directorio /etc/apache2/sites-enables:
+Y por defecto este sitio virtual está habilitado, por lo que podemos comprobar que existe un enlace simbólico a este fichero en el directorio <code>/etc/apache2/sites-enables</code>:
 
 ~~~
 lrwxrwxrwx 1 root root   35 Oct  3 15:24 000-default.conf -> ../sites-available/000-default.conf
@@ -42,7 +42,7 @@ a2ensite
 a2dissite
 ~~~
 
-En el fichero de configuración general /etc/apache2/apache2.conf nos encontramos las opciones de configuración del directorio padre del indicado en la directiva DocumentRoot (suponemos que todos los host virtuales van a estar guardados en subdirectorios de este directorio):
+En el fichero de configuración general <code>/etc/apache2/apache2.conf</code> nos encontramos las opciones de configuración del directorio padre del indicado en la directiva DocumentRoot (suponemos que todos los host virtuales van a estar guardados en subdirectorios de este directorio):
 
 ~~~
 ...
@@ -63,9 +63,9 @@ El objetivo de esta práctica es la puesta en marcha de dos sitios web utilizand
 
 Queremos construir en nuestro servidor web apache dos sitios web con las siguientes características:
 
-- El nombre de dominio del primero será www.pagina1.com, su directorio base será /var/www/pagina1 y contendrá una página llamada index.html, donde sólo se verá una bienvenida a la página.
+- El nombre de dominio del primero será <code>www.pagina1.com</code>, su directorio base será <code>/var/www/pagina1</code> y contendrá una página llamada index.html, donde sólo se verá una bienvenida a la página.
 
-- En el segundo sitio vamos a crear una página llamada www.pagina2.com, y su directorio base será /var/www/pagina2. En este sitio sólo tendremos una página inicial index.html.
+- En el segundo sitio vamos a crear una página llamada <code>www.pagina2.com</code>, y su directorio base será <code>/var/www/pagina2</code>. En este sitio sólo tendremos una página inicial index.html.
 
 Para conseguir estos dos sitios virtuales debes seguir los siguientes pasos:
 
@@ -129,7 +129,7 @@ Y la modificamos:
 
 ## Creamos index
 
-Creamos el *index.html* de las dos páginas:
+Creamos el <code>index.html</code> de las dos páginas:
 
 ~~~
 cd /var/www/
@@ -162,7 +162,7 @@ sudo systemctl restart apache2
 
 ## Prueba de funcionamiento
 
-Para que funcione en el cliente debemos de añadir las siguientes líneas al fichero */etc/hosts*:
+Para que funcione en el cliente debemos de añadir las siguientes líneas al fichero <code>/etc/hosts</code>:
 
 ~~~
 172.22.8.26	www.pagina1.com
