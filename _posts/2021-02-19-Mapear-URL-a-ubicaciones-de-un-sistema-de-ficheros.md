@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Mapear URL a ubicaciones de un sistema de ficheros
-tags: [Mapeo, Apache2, Apache, Servidor, Alias, Sitios virtuales]
+tags: [Mapeo, Apache2, Apache, Servidor, Sitios virtuales]
 ---
 # Introducción
 
