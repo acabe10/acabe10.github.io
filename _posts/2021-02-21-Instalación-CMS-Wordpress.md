@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Instalación CMS Wordpress
-tags: [CMS, PHP, Wordpress, BBDD remota]
+tags: [all, CMS, PHP, Wordpress, BBDD remota]
 ---
 # Introducción
 

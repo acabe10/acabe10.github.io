@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Servidor web Nginx
-tags: [Nginx, Servidor web, Virtualhosting, Mapeo, Autentificación, Autorización, Control acceso]
+tags: [all, Nginx, Servidor web, Virtualhosting, Mapeo, Autentificación, Autorización, Control acceso]
 ---
 # Introducción
 

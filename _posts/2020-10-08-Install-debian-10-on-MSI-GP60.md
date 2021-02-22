@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Install debian 10 on MSI GP60-2PE
-tags: [debian, install, MSI, GP60, 2PE]
+tags: [all, debian, install, MSI, GP60, 2PE]
 ---
 ## Introducción
 

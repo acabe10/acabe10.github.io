@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Cambiar servidor base de datos Drupal
-tags: [CMS, PHP, Drupal, Base de datos, BBDD]
+tags: [all, CMS, PHP, Drupal, Base de datos, BBDD]
 ---
 # Introducción
 

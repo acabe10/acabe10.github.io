@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Configuración de Apache mediante archivo .htaccess
-tags: [Apache2, Apache, htaccess]
+tags: [all, Apache2, Apache, htaccess]
 ---
 # Introducción
 

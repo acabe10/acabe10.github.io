@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Página estática con GitHub Pages y Jekyll
-tags: [Github Pages, Jekyll]
+tags: [all, Github Pages, Jekyll]
 ---
 # Introducción
 

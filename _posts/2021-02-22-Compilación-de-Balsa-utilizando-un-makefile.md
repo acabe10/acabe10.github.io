@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Compilación de Balsa utilizando un Makefile
-tags: [C, Programa, Makefile, Compilación, Balsa]
+tags: [all, C, Programa, Makefile, Compilación, Balsa]
 ---
 # Introducción
 

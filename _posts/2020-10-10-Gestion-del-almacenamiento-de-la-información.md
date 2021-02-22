@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Gestion del almacenamiento de la información
-tags: [RAID, almacenamiento, Vagrant]
+tags: [all, RAID, almacenamiento, Vagrant]
 ---
 # Introducción
 

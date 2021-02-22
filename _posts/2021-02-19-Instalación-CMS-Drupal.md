@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Instalación CMS Drupal
-tags: [CMS, PHP, LAMP, Drupal]
+tags: [all, CMS, PHP, LAMP, Drupal]
 ---
 # Introducción
 

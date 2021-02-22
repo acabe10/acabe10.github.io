@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Introducción a Vagrant
-tags: [Vagrant, instalación]
+tags: [all, Vagrant, instalación]
 ---
 ## Introducción
 

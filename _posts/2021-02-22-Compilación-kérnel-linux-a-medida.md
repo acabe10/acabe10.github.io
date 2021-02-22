@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Compilación kérnel linux a medida
-tags: [Kérnel, Linux, Compilación, Compilar]
+tags: [all, Kérnel, Linux, Compilación, Compilar]
 ---
 # Introducción
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: VirtualHosting con Apache
-tags: [Apache2, Apache, Servidor, VirtualHosting, Sitios virtuales]
+tags: [all, Apache2, Apache, Servidor, VirtualHosting, Sitios virtuales]
 ---
 # Introducción
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Servidor DHCP
-tags: [DHCP, Servidor]
+tags: [all, DHCP, Servidor]
 ---
 # Introducción
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Cifrado asimétrico con GPG y openSSL
-tags: [GPG, OpenSSL, Cifrado]
+tags: [all, GPG, OpenSSL, Cifrado]
 ---
 # Introducción
 

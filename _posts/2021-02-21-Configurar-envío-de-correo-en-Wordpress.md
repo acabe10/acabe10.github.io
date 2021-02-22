@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Configurar envío de correo en Wordpress
-tags: [CMS, PHP, Wordpress, Correo]
+tags: [all, CMS, PHP, Wordpress, Correo]
 ---
 # Introducción
 
