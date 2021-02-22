@@ -5,7 +5,7 @@ tags: [all, Nginx, Servidor web, Virtualhosting, LEMP, PHP-FPM, OVH]
 ---
 # Introducción
 
-Buenas, en este post vamos a configurar un servidor en OVH, el cuál nos han cedido nuestros profesores del IES Gonzalo Nazareno para poder prácticar durante este año, seguramente que haga más tareas sobre este servidor, el cuál encontraremos en la etiqueta del post como <code>OVH</code>.
+Buenas, en este post vamos a configurar un servidor en OVH, el cuál nos han cedido nuestros profesores del IES Gonzalo Nazareno para poder prácticar durante este año, seguramente que haga más tareas sobre este servidor, las cuáles encontraremos pulsando en la etiqueta del post <code>OVH</code>.
 
 Vamos a realizar los siguientes puntos:
 
