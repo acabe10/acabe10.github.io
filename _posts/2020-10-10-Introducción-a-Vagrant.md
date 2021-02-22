@@ -11,7 +11,7 @@ Las máquinas virtuales creadas por vagrant se pueden ejecutar con distintos ges
 
 ## Instalación de Vagrant
 
-Instalamos VirtualBox y Vagrant(en Debian Buster lo podemos instalar de repositorios, si queremos la última versión lo podemos descargar desde la [página oficial](https://www.vagrantup.com/downloads)):
+Instalamos VirtualBox y Vagrant (en Debian Buster lo podemos instalar de repositorios, si queremos la última versión lo podemos descargar desde la [página oficial](https://www.vagrantup.com/downloads)):
 
 ~~~
 # apt install virtualbox-6.0 vagrant
