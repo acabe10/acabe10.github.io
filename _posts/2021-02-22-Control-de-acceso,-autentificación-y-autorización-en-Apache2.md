@@ -63,15 +63,15 @@ Cuando desde el cliente intentamos acceder a una URL que esta controlada por el 
 
 1. El servidor manda una respuesta del tipo <code>401 HTTP/1.1 401 Authorization Required</code> con una cabecera <code>WWW-Authenticate</code> al cliente de la forma:
  
- ~~~
- WWW-Authenticate: Basic realm="Palabra de paso"
- ~~~
+	~~~
+	WWW-Authenticate: Basic realm="Palabra de paso"
+	~~~
 
 2. El navegador del cliente muestra una ventana emergente preguntando por el nombre de usuario y contraseña y cuando se rellena se manda una petición con una cabecera <code>Authorization</code>:
 
- ~~~
- Authorization: Basic am9zZTpqb3Nl
- ~~~
+	~~~
+	Authorization: Basic am9zZTpqb3Nl
+	~~~
 
 En realidad la información que se manda es el nombre de usuario y la contraseña en base 64, que se puede decodificar fácilmente con cualquier [utilidad](https://www.base64decode.org/).
 
