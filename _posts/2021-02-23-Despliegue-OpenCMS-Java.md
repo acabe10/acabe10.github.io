@@ -5,7 +5,7 @@ tags: [all, CMS, Java, Despliegue, OpenCMS]
 ---
 # Introducción
 
-Buenas, en este post vamos a instalar OpenCMS en una máquina de nuestro cloud privado y posteriormente vamos a hacer su despliegue a través de `apache2` y `tomcat` usando el protocolo AJP.
+Buenas, en este post vamos a instalar OpenCMS en una máquina de nuestro cloud privado y posteriormente vamos a hacer su despliegue a través de `apache2` y `tomcat` usando un proxy inverso.
 
 ## Instalación requisitos
 
@@ -120,67 +120,6 @@ sudo systemctl restart tomcat9
 Ahora ya podremos acceder a la página principal de Opencms:
 
 ![10](/assets/img/posts/cms-java/10.png)
-
-## Apache y Tomcat9 (AJP)
-
-Voy a poner la configuración realizada para usar el protocolo AJP, el cual no me ha funcionado.
-
-Editamos el fichero:
-
-~~~
-sudo nano /etc/tomcat9/server.xml
-~~~
-
-Y descomentamos las siguientes líneas:
-
-~~~
-<Connector protocol="AJP/1.3"
-               port="8009"
-               redirectPort="8443" />
-~~~
-
-Creamos el archivo:
-
-~~~
-sudo nano /etc/apache2/workers.properties
-~~~
-
-Y añadimos lo siguiente:
-
-~~~
-# Definir un worker usando ajp13 
-worker.list=worker1
-# Definir las propiedades del worker (ajp13) 
-worker.worker1.type=ajp13
-worker.worker1.host=localhost
-worker.worker1.port=8009
-~~~
-
-Le decimos a Apache2 que use el archivo worker que hemos creado:
-
-~~~
-nano /etc/apache2/mods-available/jk.conf
-~~~
-
-Y modificamos la siguiente línea:
-
-~~~
-JkWorkersFile /etc/apache2/workers.properties
-~~~
-
-Y en el virtualhost, editamos:
-
-~~~
-sudo nano /etc/apache2/sites-available/000-default.conf
-~~~
-
-Y añadimos lo siguiente dentro del virtualhost:
-
-~~~
-JkMount /opencms* worker1
-~~~
-
-Lo anterior no me ha funcionado, incluso he creado otra aplicación básica con un `helloworld` y tampoco, por ello explico a continuación como lo he realizado con proxy inverso http.
 
 ## Apache2 y Tomcat9 (proxy inverso http)
 
