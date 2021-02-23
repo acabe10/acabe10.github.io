@@ -238,7 +238,7 @@ iesgn02.es.		3600	IN	MX	10 mail.iesgn02.es.
 
 ## Envío de mail a usuario root, debian y correo exterior
 
-Editamos el crontab desde el usuario debian:
+Para poder recibir correo cada vez que realicemos una tarea del crontab editamos el crontab desde el usuario debian:
 
 ~~~
 crontab -e
