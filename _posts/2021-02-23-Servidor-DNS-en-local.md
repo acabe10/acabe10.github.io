@@ -8,6 +8,8 @@ tags: [all, DNS, Servidor, DNSmasq, Bind9]
 Buenas, en este post vamos a instalar un servidor DNS en nuestra red local, haremos primero la instalación de DNSmasq y posteriormente lo haremos con Bind9.
 
 1. Tendremos un servidor web que sirve dos páginas web: `www.iesgn.org` y `departamentos.iesgn.org`
+2. Vamos a instalar en nuestra red local un servidor DNS (lo puedes instalar en el mismo equipo que tiene el servidor web).
+3. Voy a suponer en este documento que el nombre del servidor DNS va a ser cabezas.iesgn.org.
 
 ## Servidor DNSmasq
 
