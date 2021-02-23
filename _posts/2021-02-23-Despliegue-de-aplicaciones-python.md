@@ -339,21 +339,21 @@ sudo systemctl restart apache2
 
 	- Y lo dejamos de la siguiente forma:
 
-	~~~
-	{% load static %}
+~~~
+{% load static %}
 
-	<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
-	<h1>Alejandro Cabezas</h1>
-	{% if latest_question_list %}
-	    <ul>
-	    {% for question in latest_question_list %}
-	    <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
-	    {% endfor %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+<h1>Alejandro Cabezas</h1>
+{% if latest_question_list %}
+	<ul>
+	{% for question in latest_question_list %}
+		<li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+	{% endfor %}
 	    </ul>
-	{% else %}
-	    <p>No polls are available.</p>
-	{% endif %}
-	~~~
+{% else %}
+	<p>No polls are available.</p>
+{% endif %}
+~~~
 
 	- Comprobamos en desarrollo:
 
