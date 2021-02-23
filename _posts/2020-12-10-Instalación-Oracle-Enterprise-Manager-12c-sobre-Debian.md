@@ -3,8 +3,7 @@ layout: post
 title: Instalación Oracle Enterprise Manager 12c sobre Debian
 tags: [all, Oracle, Debian, BBDD]
 ---
-
-# Instalación y prueba desde un cliente remoto de Oracle Enterprise Manager
+# Introducción
 
 Para la instalación de Oracle Enterprise Manager vamos a instalar Oracle Database 12c sobre Debian 8, el cuál trae Enterprise Manager incluido.
 
@@ -169,25 +168,25 @@ ssh -XC oracle@192.168.1.247 database/runInstaller -IgnoreSysPreReqs
 
 Vamos a explicar de manera rápida los pasos para su instalación:
 
-# No seleccionamos correo
-# Crear y configurar base de datos
-# Servidor
-# Instancia única
-# Instalación avanzada
-# Idiomas por defecto
-# Edición enterprise
-# Ubicación por defecto: `/opt/oracle`
-# Inventario por defecto `/opt/oracle/oraInventory`
-# Configuración por defecto
-# El ID nos debe de aparecer base1 si hemos introducido las variables correctamente
-# Almacenamiento base de datos por defecto: `/opt/oracle/product/12.1.0.2`
-# Gestión por defecto
-# Recuperación por defecto
-# Establecemos una contraseña
-# Opción por defecto
-# Instalamos
-# Ejecutamos los scripts requeridos
-# Finalizado
+* No seleccionamos correo
+* Crear y configurar base de datos
+* Servidor
+* Instancia única
+* Instalación avanzada
+* Idiomas por defecto
+* Edición enterprise
+* Ubicación por defecto: `/opt/oracle`
+* Inventario por defecto `/opt/oracle/oraInventory`
+* Configuración por defecto
+* El ID nos debe de aparecer base1 si hemos introducido las variables correctamente
+* Almacenamiento base de datos por defecto: `/opt/oracle/product/12.1.0.2`
+* Gestión por defecto
+* Recuperación por defecto
+* Establecemos una contraseña
+* Opción por defecto
+* Instalamos
+* Ejecutamos los scripts requeridos
+* Finalizado
 
 Para poder activar la base de datos, tendremos que iniciarla, para ello:
 
