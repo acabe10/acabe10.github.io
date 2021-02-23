@@ -116,6 +116,8 @@ git push
 
 ## Instalación en producción
 
+Vamos a instalar `Mezzanine` en `quijote`, ya que tenemos el servidor web alojado ahí.
+
 ### Git y git clone
 
 Para tener los datos en `quijote` debemos de instalar git para poder hacer una clonación del repositorio:
