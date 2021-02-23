@@ -94,7 +94,7 @@ iface ens9 inet dhcp
 ## Ejercicio 2
 
 Crea un par de claves ssh en formato ecdsa y sin frase de paso y
-agrega la clave pública al usuario `debian`
+agrega la clave pública al usuario `debian`.
 
 Creamos el par de claves en nuestra máquina anfitriona:
 
@@ -154,6 +154,9 @@ debian@debian:~$
 ~~~
 
 ## Ejercicio 3
+
+Utiliza la herramienta `virt-sparsify` para reducir al máximo el
+tamaño de la imagen.
 
 Apagamos la máquina:
 
@@ -237,7 +240,10 @@ Format specific information:
 
 ## Ejercicio 4
 
-Ya que tenemos los servidores de OVH, la voy a subir a mi página http://www.iesgn02.es, para ello, vamos a cambiar primero el propietario de _buster-base.qcow2_:
+Sube la imagen y la clave privada ssh a alguna ubicación pública
+desde la que se pueda descargar.
+
+Ya que tenemos los servidores de OVH, la voy a subir a mi página http://www.iesgn02.es, para ello, vamos a cambiar primero el propietario de `buster-base.qcow2`:
 
 ~~~
 sudo chown -R ale. /var/lib/libvirt/images/buster-base-2.qcow2
@@ -250,7 +256,11 @@ scp /var/lib/libvirt/images/buster-base-2.qcow2 ned.iesgn02.es:/home/debian
 scp ~/.ssh/hlc ned.iesgn02.es:/home/debian
 ~~~
 
-## Ejercicio 5.1
+## Ejercicio 5
+
+Crea una imagen nueva, que utilice `buster-base.qcow2` como imagen
+base y tenga 5 GiB de tamaño máximo. Esta imagen se denominará
+`maquina1.qcow2`.
 
 Vamos a obtener una imagen la cuál sólo obtenga los cambios realizados a partir de la imagen base, para ello:
 
@@ -284,7 +294,10 @@ Format specific information:
     corrupt: false
 ~~~
 
-## Ejercicio 5.2
+## Ejercicio 6
+
+Crea una red interna de nombre `intra` con salida al exterior
+mediante NAT que utilice el direccionamiento `10.10.20.0/24`.
 
 Creamos el fichero:
 
@@ -327,7 +340,11 @@ virsh -c qemu:///system net-list
  intra   active   no          yes
 ~~~
 
-## Ejercicio 5.3
+## Ejercicio 7
+
+Crea una máquina virtual (`maquina1`) conectada a la red `intra`,
+con 1 GiB de RAM, que utilice como disco raíz `maquina1.qcow2` y
+que se inicie automáticamente.
 
 Lanzamos la máquina:
 
@@ -341,7 +358,10 @@ virt-install --connect qemu:///system --name maquina1 \
 --import
 ~~~
 
-## Ejercicio 5.4
+## Ejercicio 8
+
+Crea un volumen adicional de 1 GiB de tamaño en formato RAW
+ubicado en el pool por defecto.
 
 Creamos el volumen adicional de 1GiB:
 
@@ -349,7 +369,13 @@ Creamos el volumen adicional de 1GiB:
 virsh -c qemu:///system vol-create-as --format raw --name vol-raw --capacity 1GiB --pool default
 ~~~
 
-## Ejercicio 5.5
+## Ejercicio 9
+
+Una vez iniciada la MV `maquina1`, conecta el volumen a la
+máquina, crea un sistema de ficheros XFS en el volumen y móntalo en
+el directorio `/var/lib/pgsql`. Ten cuidado con los propietarios y
+grupos que pongas, para que funcione adecuadamente el siguiente
+punto.
 
 Conectamos el volumen a la máquina:
 
@@ -405,9 +431,13 @@ Cambiamos el propietario y grupo del directorio:
 sudo chown -R postgres /var/lib/pgsql/
 ~~~
 
-## Ejercicio 5.6
+## Ejercicio 10
 
-Instalamos _PostgreSQL_:
+Instala en `maquina1` el sistema de BBDD `PostgreSQL` que ubicará
+sus ficheros con las bases de datos en `/var/lib/pgsql` utilizando
+una conexión ssh.
+
+Instalamos `PostgreSQL`:
 
 ~~~
 sudo apt install postgresql
@@ -433,13 +463,13 @@ Para cambiarlo, primero paramos postgre para garantizar la integridad de los dat
 sudo systemctl stop postgresql
 ~~~
 
-Ahora instalamos _rsync_ que usaremos para hacer la copia:
+Ahora instalamos `rsync` que usaremos para hacer la copia:
 
 ~~~
 sudo apt install rsync
 ~~~
 
-Y hacemos la copia copiando los permisos con -a:
+Y hacemos la copia copiando los permisos con `-a`:
 
 ~~~
 sudo rsync -av /var/lib/postgresql /var/lib/pgsql
@@ -457,7 +487,7 @@ Para apuntar a la nueva ubicación editamos:
 sudo nano /etc/postgresql/11/main/postgresql.conf
 ~~~
 
-Y editamos la línea de _data directory_ dejándola de la siguiente forma:
+Y editamos la línea de `data directory` dejándola de la siguiente forma:
 
 ~~~
 data_directory = '/var/lib/pgsql/postgresql/11/main'
@@ -489,9 +519,11 @@ Ya podríamos borrar el directorio antiguo de postgres:
 sudo rm -rf /var/lib/postgresql/11/main.bak
 ~~~
 
-## Ejercicio 5.7
+## Ejercicio 11
 
-Accedemos al usuario _postgres_ con contraseña _postgres_:
+Puebla la base de datos con una BBDD de prueba.
+
+Accedemos al usuario `postgres` con contraseña `postgres`:
 
 ~~~
 debian@debian:~$ su - postgres
@@ -517,7 +549,10 @@ Ahora está conectado a la base de datos «prueba» con el usuario «postgres».
 prueba=#
 ~~~
 
-## Ejercicio 5.8
+## Ejercicio 12
+
+Crea una regla de NAT para que la base de datos sea accesible
+desde el exterior.
 
 Para que la base de datos sea accesible desde el exterior, editamos:
 
@@ -525,7 +560,7 @@ Para que la base de datos sea accesible desde el exterior, editamos:
 sudo nano /etc/postgresql/11/main/postgresql.conf
 ~~~
 
-Y descomentamos la línea _listen addresses_ y la dejamos de la siguiente forma:
+Y descomentamos la línea `listen addresses` y la dejamos de la siguiente forma:
 
 ~~~
 listen_addresses = '*'
@@ -537,7 +572,7 @@ También tendremos que editar el siguiente fichero:
 sudo nano /etc/postgresql/11/main/pg_hba.conf
 ~~~
 
-Cambiando las _IPv4 local connections_:
+Cambiando las `IPv4 local connections`:
 
 ~~~
 # IPv4 local connections:
@@ -594,12 +629,17 @@ Y en el hipervisor:
 iptables -t nat -A PREROUTING -p tcp --dport 5997 -j DNAT --to 10.10.20.64:5997
 ~~~
 
-## Ejercicio 5.11
+## Ejercicio 13
+
+Crea una imagen que utilice `buster-base.qcow2` como imagen base y
+que tenga un tamaño de 4 GiB. Esta imagen se llamará
+`maquina2.qcow2`.
 
 Creamos la imagen para maquina2:
 
 ~~~
-sudo qemu-img create -f qcow2 -o backing_file=/var/lib/libvirt/images/buster-base-2.qcow2 /var/lib/libvirt/images/maquina2.qcow2 4G~~~
+sudo qemu-img create -f qcow2 -o backing_file=/var/lib/libvirt/images/buster-base-2.qcow2 /var/lib/libvirt/images/maquina2.qcow2 4G
+~~~
 
 Y ahora añadimos la imagen a dicho volumen:
 
@@ -620,7 +660,10 @@ Format specific information:
     corrupt: false
 ~~~
 
-## Ejercicio 5.12
+## Ejercicio 14
+
+Crea una nueva máquina (`maquina2`) que utilice imagen anterior,
+con 1 GiB de RAM y que también esté conectada a `intra`.
 
 Lanzamos la máquina:
 
@@ -643,7 +686,12 @@ virsh -c qemu:///system domifaddr maquina2
  vnet1      52:54:00:ff:e3:49    ipv4         10.10.20.64/24
 ~~~
 
-## Ejercicio 5.13
+## Ejercicio 15
+
+Para el servicio `postgreSQL`, desmonta el dispositivo de bloques,
+desmonta el volumen de `maquina1`, monta el volumen en `maquina2`
+en el directorio `/var/lib/pgsql` teniendo de nuevo cuidado con los
+propietarios y permisos del directorio.
 
 En máquina1:
 
@@ -666,7 +714,10 @@ sudo mkdir /var/lib/pgsql
 sudo mount /dev/sdb /var/lib/pgsql/
 ~~~
 
-## Ejercicio 5.14
+## Ejercicio 16
+
+Copia de forma adecuada todos los ficheros de configuración de
+`PostgreSQL` de `maquina1` a `maquina2`.
 
 Cambiamos permisos de los ficheros para poderlos pasar con usuario debian:
 
@@ -682,7 +733,9 @@ scp /etc/postgresql/11/main/postgresql.conf debian@10.10.20.64:/home/debian
 scp /etc/postgresql/11/main/pg_hba.conf debian@10.10.20.64:/home/debian
 ~~~
 
-## Ejercicio 5.15
+## Ejercicio 17
+
+Instala `PostgreSQL` en `maquina2` a través de ssh.
 
 Instalamos a través de ssh:
 
@@ -709,7 +762,11 @@ Digite «help» para obtener ayuda.
 prueba=> 
 ~~~
 
-## Ejercicio 5.16
+## Ejercicio 18
+
+Conecta `maquina2` al bridge exterior de tu equipo, comprueba la
+IP que tiene el equipo en el bridge exterior y muéstrala por la
+salida estándar. Desconecta `maquina2` de `intra`.
 
 Hemos creado otro fichero xml con el siguiente contenido:
 
@@ -772,7 +829,10 @@ Todo correcto, quitamos la interfaz de intra:
 virsh -c qemu:///system detach-interface --domain maquina2 --type network --mac 52:54:00:ff:e3:49
 ~~~
 
-## Ejercicio 5.17
+## Ejercicio 19
+
+Comprueba que el servicio `PostgreSQL` funciona accediendo a
+través del bridge exterior.
 
 Accedemos desde nuestro hipervisor:
 
@@ -792,7 +852,9 @@ Si tuvieramos que acceder desde el exterior, tendríamos que cambiar la regla de
 iptables -t nat -A PREROUTING -p tcp --dport 5997 -j DNAT --to 10.10.50.54:5997
 ~~~
 
-## Ejercicio 5.18
+## Ejercicio 20
+
+Apaga `maquina1` y aumenta la RAM de `maquina2` a 2 GiB.
 
 Apagamos máquina1:
 
