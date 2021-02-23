@@ -15,23 +15,23 @@ Vamos a usar a `Sancho`. Antes que nada tenemos que volver a activar el `dhcp` d
 
 Vamos a generar una contraseña con `mkpasswd`, que viene con el paquete `whois`, la cuál usaremos en nuestro archivo `cloud-config.yaml`:
 
-<pre>
+~~~
 mkpasswd --method=SHA-512 --rounds=4096
 Contraseña: 
 $6$rounds=4096$VnWm7hvw//YedOc$pngcEHsjE94Gb6nMqbOf7LR.TIU.2FkWPtdn5O3gIl/RJhCMV41FAqfeku1U9B0/viO7NF15GUf7AEiMapeIE/
-</pre>
+~~~
 
 ### Obtener ID de volumen
 
 Para poder obtener el ID de los volumenes de nuestro proyecto de Openstack, necesitamos añadir al script de la ejecución de nuestro proyecto la siguiente línea:
 
-<pre>
+~~~
 export OS_VOLUME_API_VERSION=2
-</pre>
+~~~
 
 Así ya podremos ejecutar el siguiente comando para obtener los volúmenes:
 
-<pre>
+~~~
 openstack volume list
 +--------------------------------------+----------+-----------+------+-----------------------------------+
 | ID                                   | Name     | Status    | Size | Attached to                       |
@@ -42,13 +42,13 @@ openstack volume list
 | 49c2596f-8c38-413c-8b0a-dc470ebb1ade | sancho   | available |   10 |                                   |
 | 598f13c1-8a55-47eb-95a9-d29eeded32e9 | dulcinea | in-use    |   10 | Attached to dulcinea on /dev/vda  |
 +--------------------------------------+----------+-----------+------+-----------------------------------+
-</pre>
+~~~
 
 ### Obtener id red de proyecto
 
 Para obtener la red del proyecto:
 
-<pre>
+~~~
 openstack network list
 +--------------------------------------+-----------------------------------+----------------------------------------------------------------------------+
 | ID                                   | Name                              | Subnets                                                                    |
@@ -59,13 +59,13 @@ openstack network list
 | c0bfcf94-919a-451b-8ab5-d6c46e5e4663 | red interna de alejandro.cabeza   | 46237ca1-5e8e-45b8-bf8a-ef515c9d17bf                                       |
 | de22c64c-0c44-491c-8bc4-cb0d2e33cce9 | red interna de alejandro.cabeza_2 | da95436a-9fef-4892-bddc-3ed1f817be55                                       |
 +--------------------------------------+-----------------------------------+----------------------------------------------------------------------------+
-</pre>
+~~~
 
 ## Fichero de cloud-init
 
 Hemos creado el siguiente fichero con el cual arrancaremos la máquina:
 
-<pre>
+~~~
 #cloud-config
 # Instalamos algunos paquetes:
 packages:
@@ -110,13 +110,13 @@ network:
     name: ens3
     subnets:
       - type: dhcp
-</pre>
+~~~
 
 ## Creación de instancia
 
 Una vez eliminada la máquina `sancho`, previamente hemos eliminado también el archivo `/etc/cloud/cloud.cfg.d/99-disable-network-config.cfg` que nos desactivaba el cloud-network. Ejecutamos para crear la instancia:
 
-<pre>
+~~~
 openstack server create --volume 49c2596f-8c38-413c-8b0a-dc470ebb1ade --flavor m1.mini --security-group default --key-name cloud --network c0bfcf94-919a-451b-8ab5-d6c46e5e4663 --user-data cloud-init.yaml sancho
 +-----------------------------+------------------------------------------------------------------+
 | Field                       | Value                                                            |
@@ -149,6 +149,6 @@ openstack server create --volume 49c2596f-8c38-413c-8b0a-dc470ebb1ade --flavor m
 | user_id                     | c179ae8775bb4403bc9564b9787ea4a35a4af3954f1a0d1fc1205481e24dd50a |
 | volumes_attached            | id='49c2596f-8c38-413c-8b0a-dc470ebb1ade'                        |
 +-----------------------------+------------------------------------------------------------------+
-</pre>
+~~~
 
 Así ya tendríamos la instancia creada y lo único que tendríamos que hacer es ponerle una ip estática igual que la que nos ha asignado el DHCP de la red para poder volver a deshabilitarlo y que todo esté como antes.
