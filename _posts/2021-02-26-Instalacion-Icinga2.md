@@ -5,7 +5,7 @@ tags: [all, OpenStack, Toboso, Icinga2]
 ---
 # Introducción
 
-Buenas, en este post vamos a instalar y configuar Icinga2 para hacer un monitoreo de las máquinas que tenemos en OpenStack y OVH.
+Buenas, en este post vamos a instalar y configuar Icinga2 para hacer un monitoreo de las máquinas que tenemos en OpenStack y OVH. La instalación la haremos en Dulcinea.
 
 Icinga es un fork de Nagios creado en 2009 por un grupo de desarrolladores de la comunidad. Este intenta mejorar a Nagios en sus características y componentes, entre ellos se encuentra una interfaz web más moderna y los conectores adicionales para bases de datos.
 
