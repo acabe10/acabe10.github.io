@@ -11,24 +11,24 @@ Buenas, en este post vamos a desarrollar la aplicación del [tutorial de django 
 
 Vamos a configurar nuestro equipo para trabajar con la aplicación:
 
-* Realizamos un fork del repositorio: https://github.com/acabe10/django_tutorial
+* Realizamos un fork del repositorio:
 
-~~~
-git clone git@github.com:acabe10/django_tutorial.git
-~~~
+	~~~
+	git clone git@github.com:acabe10/django_tutorial.git
+	~~~
 
 * Creamos entorno
 
-~~~
-python3 -m venv django 
-source django/bin/activate
-~~~
+	~~~
+	python3 -m venv django 
+	source django/bin/activate
+	~~~
 
 * Instalamos las dependencias necesarias:
 
-~~~
-pip install -r requirements.txt
-~~~
+	~~~
+	pip install -r requirements.txt
+	~~~
 
 * Creamos base de datos. La base de datos se llamará:
 
@@ -44,15 +44,15 @@ pip install -r requirements.txt
 
 * Creamos usuario
 
-~~~
-python3 manage.py createsuperuser
-~~~
+	~~~
+	python3 manage.py createsuperuser
+	~~~
 
 * Lanzamos el servidor en desarrollo:
 
-~~~
-python3 manage.py runserver
-~~~
+	~~~
+	python3 manage.py runserver
+	~~~
 
 * Comprobación
 
@@ -109,11 +109,11 @@ Suponiendo que ya tenemos una máquina creada en el cloud.
 
 * Instalamos dependencias y el módulo que permite a <code>python</code> trabajar con <code>mysql</code>:
 
-~~~
-cd /var/www/html/django_tutorial
-pip install -r requirements.txt
-pip	install mysql-connector-python
-~~~
+	~~~
+	cd /var/www/html/django_tutorial
+	pip install -r requirements.txt
+	pip	install mysql-connector-python
+	~~~
 
 * MariaDB
 
@@ -152,9 +152,9 @@ pip	install mysql-connector-python
 
 * Migración base de datos
 
-~~~
-python3 manage.py migrate
-~~~
+	~~~
+	python3 manage.py migrate
+	~~~
 
 	Podemos confirmar viendo las tablas en nuestro usuario de _mariadb_:
 
@@ -230,9 +230,9 @@ python3 manage.py migrate
 
 * Reiniciamos el servicio:
 
-~~~
-sudo systemctl restart apache2
-~~~
+	~~~
+	sudo systemctl restart apache2
+	~~~
 
 * Comprobaciones
 
