@@ -327,152 +327,152 @@ sudo systemctl restart apache2
 	DEBUG = False
 	~~~
 
-h1. Tarea 3
+## Modificación de aplicación
 
-h2. Añadimos nuestro nombre
+* Añadimos nuestro nombre
 
-Para que nuestro nombre aparezca arriba de la página de las encuestas modificamos:
+	- Para que nuestro nombre aparezca arriba de la página de las encuestas modificamos:
 
-~~~
-sudo nano /var/www/html/django_tutorial/polls/templates/polls/index.html
-~~~
+	~~~
+	sudo nano /var/www/html/django_tutorial/polls/templates/polls/index.html
+	~~~
 
-Y lo dejamos de la siguiente forma:
+	- Y lo dejamos de la siguiente forma:
 
-~~~
-{% load static %}
+	~~~
+	{% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
-<h1>Alejandro Cabezas</h1>
-{% if latest_question_list %}
-    <ul>
-    {% for question in latest_question_list %}
-    <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No polls are available.</p>
-{% endif %}
-~~~
+	<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+	<h1>Alejandro Cabezas</h1>
+	{% if latest_question_list %}
+	    <ul>
+	    {% for question in latest_question_list %}
+	    <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+	    {% endfor %}
+	    </ul>
+	{% else %}
+	    <p>No polls are available.</p>
+	{% endif %}
+	~~~
 
-Comprobamos en desarrollo:
+	- Comprobamos en desarrollo:
 
 ![7](/assets/img/posts/django_tutorial/7.png)
 
-Y para que los cambios sean efectivos en producción:
+	- Y para que los cambios sean efectivos en producción:
 
-~~~
-git commit -am "añado nombre"
-git push
-~~~
+	~~~
+	git commit -am "añado nombre"
+	git push
+	~~~
 
-Y en producción ejecutamos:
+	- Y en producción ejecutamos:
 
-~~~
-sudo git pull
-~~~
+	~~~
+	sudo git pull
+	~~~
 
-Comprobamos en producción:
+	- Comprobamos en producción:
 
 ![8](/assets/img/posts/django_tutorial/8.png)
 
-h2. Modificar imagen de fondo
+* Modificar imagen de fondo
 
-En desarrollo, en la ruta:
+	- En desarrollo, en la ruta:
 
-~~~
-/var/www/html/django_tutorial/polls/static/polls/images
-~~~
+	~~~
+	/var/www/html/django_tutorial/polls/static/polls/images
+	~~~
 
-Añadimos una nueva imagen y comprobamos:
+	- Añadimos una nueva imagen y comprobamos:
 
 ![9](/assets/img/posts/django_tutorial/9.png)
 
-Subimos a github:
+	- Subimos a github:
 
-~~~
-git commit -am "añado background"
-git push
-~~~
+	~~~
+	git commit -am "añado background"
+	git push
+	~~~
 
-Y en producción ejecuto:
+	- Y en producción ejecuto:
 
-~~~
-sudo git pull
-~~~
+	~~~
+	sudo git pull
+	~~~
 
-Y comprobamos:
+	- Y comprobamos:
 
 ![10](/assets/img/posts/django_tutorial/10.png)
 
-h2. Crear nueva tabla
+* Crear nueva tabla
 
-Nos vamos a:
+	- Nos vamos a:
 
-~~~
-sudo nano /var/www/html/django_tutorial/polls/models.py
-~~~
+	~~~
+	sudo nano /var/www/html/django_tutorial/polls/models.py
+	~~~
 
-Y añadimos:
+	- Y añadimos:
 
-~~~
-class Categoria(models.Model):	
-  	Abr = models.CharField(max_length=4)
-  	Nombre = models.CharField(max_length=50)
+	~~~
+	class Categoria(models.Model):	
+	  	Abr = models.CharField(max_length=4)
+	  	Nombre = models.CharField(max_length=50)
 
-  	def __str__(self):
-  		return self.Abr+" - "+self.Nombre 
-~~~
+	  	def __str__(self):
+	  		return self.Abr+" - "+self.Nombre 
+	~~~
 
-Ejecutamos para crear la nueva migración:
+	- Ejecutamos para crear la nueva migración:
 
-~~~
-python3 manage.py makemigrations
-Migrations for 'polls':
-  polls/migrations/0002_categoria.py
-    - Create model Categoria
-~~~
+	~~~
+	python3 manage.py makemigrations
+	Migrations for 'polls':
+	  polls/migrations/0002_categoria.py
+	    - Create model Categoria
+	~~~
 
-Y realizamos la migración:
+	- Y realizamos la migración:
 
-~~~
-python3 manage.py migrate
-Operations to perform:
-  Apply all migrations: admin, auth, contenttypes, polls, sessions
-Running migrations:
-  Applying polls.0002_categoria... OK
-~~~
+	~~~
+	python3 manage.py migrate
+	Operations to perform:
+	  Apply all migrations: admin, auth, contenttypes, polls, sessions
+	Running migrations:
+	  Applying polls.0002_categoria... OK
+	~~~
 
-Ahora añadimos el nuevo modelo al sitio de administración de django, añadiendo en la segunda línea  el nombre del modelo
+	- Ahora añadimos el nuevo modelo al sitio de administración de django, añadiendo en la segunda línea  el nombre del modelo
 
-~~~
-from .models import Choice, Question, Categoria
-~~~
+	~~~
+	from .models import Choice, Question, Categoria
+	~~~
 
-Y al final de la línea:
+	- Y al final de la línea:
 
-~~~
-admin.site.register(Categoria)
-~~~
+	~~~
+	admin.site.register(Categoria)
+	~~~
 
-Comprobamos en desarrollo:
+	- Comprobamos en desarrollo:
 
 ![11](/assets/img/posts/django_tutorial/11.png)
 
-Subimos a git:
+	- Subimos a git:
 
-~~~
-git add polls/migrations/0002_categoria.py
-git commit -am "nuevo modelo"
-git push
-~~~
+	~~~
+	git add polls/migrations/0002_categoria.py
+	git commit -am "nuevo modelo"
+	git push
+	~~~
 
-Y en producción:
+	- Y en producción:
 
-~~~
-sudo git pull
-~~~
+	~~~
+	sudo git pull
+	~~~
 
-Y comprobamos:
+	- Y comprobamos:
 
 ![12](/assets/img/posts/django_tutorial/12.png)
