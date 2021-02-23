@@ -342,7 +342,6 @@ sudo systemctl restart apache2
 		~~~
 		...
 		<h1>Alejandro Cabezas</h1>
-		{% if latest_question_list %}
 		...
 		~~~
 
