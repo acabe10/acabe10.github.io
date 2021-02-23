@@ -76,25 +76,25 @@ Quit the server with CONTROL-C.
 
 Accedemos a la aplicación:
 
-!1.png!
+![1](/assets/img/posts/mezzanine/1.png)
 
 ### Personalización página
 
 Primero vamos a cambiar el nombre, para ello accedemos al panel de administración introduciendo el usuario anteriormente creado:
 
-!2.png!
+![2](/assets/img/posts/mezzanine/2.png)
 
 Nos vamos a `settings` y cambiamos el apartado llamado `Site Title`:
 
-!3.png!
+![3](/assets/img/posts/mezzanine/3.png)
 
 También hemos añadido una página nueva entrando en el apartado `Pages` y creando una nueva:
 
-!6.png!
+![6](/assets/img/posts/mezzanine/6.png)
 
 Y nuestra página ha quedado de la siguiente forma:
 
-!5.png!
+![5](/assets/img/posts/mezzanine/5.png)
 
 ### Backup base de datos
 
@@ -467,6 +467,6 @@ python          IN      CNAME   dulcinea
 
 Comprobamos la página desde el navegador:
 
-!7.png!
+![7](/assets/img/posts/mezzanine/7.png)
 
-!8.png!
+![8](/assets/img/posts/mezzanine/8.png)
