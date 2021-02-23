@@ -11,8 +11,6 @@ Buenas, en este post configuraremos un escenario en vagrant con 3 máquinas (un 
 - Utilizaremos systemd mount para que el target se monte automáticamente al arrancar el cliente.
 - Crearemos un target con 2 LUN y autenticación por CHAP y lo conectaremos a un cliente windows.
 
-iSCSI
-
 # Escenario
 
 Tenemos el siguiente escenario creado en VirtualBox mediante vagrant:
