@@ -32,15 +32,15 @@ pip install -r requirements.txt
 
 * Creamos base de datos. La base de datos se llamará:
 
-~~~
-db.sqlite3
-~~~
+	~~~
+	db.sqlite3
+	~~~
 	
-La creamos:
+	La creamos:
 
-~~~
-python3 manage.py migrate
-~~~
+	~~~
+	python3 manage.py migrate
+	~~~
 
 * Creamos usuario
 
