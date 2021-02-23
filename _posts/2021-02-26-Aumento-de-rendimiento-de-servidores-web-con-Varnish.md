@@ -246,7 +246,7 @@ Requests per second:    11208.79 [#/sec] (mean)
 ...
 ~~~
 
-Si hacemos varias peticiones al servidor, sólo se mostrará una, ya que _varnish_ hace también de servidor caché:
+Si hacemos varias peticiones al servidor, sólo se mostrará una, ya que `varnish` hace también de servidor caché:
 
 ~~~
 less /var/log/nginx/access.log
