@@ -94,7 +94,7 @@ To: alejandrocabezab@gmail.com
 Subject: prueba desde ovh
 ~~~
 
-Registro SPF en OVH:
+Registro SPF en DNS de OVH:
 
 ~~~
 iesgn02.es.
