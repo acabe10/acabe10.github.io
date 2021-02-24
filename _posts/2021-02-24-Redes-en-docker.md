@@ -23,6 +23,7 @@ Hemos usado la opción `--rm` para al finalizar de ejecutar el proceso, el conte
 
 Observamos que el contenedor tiene una ip en la red `172.17.0.0/16`. Además podemos comprobar que se ha creado un bridge en el host, al que se conectan los contenedores:
 
+~~~
 $ ip a
 ...
 4: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default 
@@ -32,6 +33,7 @@ $ ip a
     inet6 fe80::42:80ff:fe30:5716/64 scope link 
        valid_lft forever preferred_lft forever
 ...
+~~~
 
 Además podemos comprobar que se han creado distintas cadenas en el cortafuegos para gestionar la comunicación de los contenedores. Podemos ejecutar: `sudo iptables -L -n` y `sudo iptables -L -n - t nat` y comprobarlo.
 
