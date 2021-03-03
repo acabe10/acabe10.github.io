@@ -11,7 +11,7 @@ Buenas, en este post vamos a realizar una serie de ejercicios para implantar apl
 
 Objetivos:
 
-* Queremos ejecutar en un contenedor docker la aplicación web escrita en PHP: bookMedik (https://github.com/evilnapsis/bookmedik).
+* Queremos ejecutar en un contenedor docker la aplicación web escrita en [PHP: bookMedik](https://github.com/evilnapsis/bookmedik).
 
 * Es necesario tener un contenedor con mariadb donde vamos a crear la base de datos y los datos de la aplicación. El script para generar la base de datos y los registros lo encuentras en el repositorio y se llama schema.sql. Debes crear un usuario con su contraseña en la base de datos. La base de datos se llama bookmedik y se crea al ejecutar el script.
 
