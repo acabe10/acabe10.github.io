@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Docker compose
+title: Implantación de aplicaciones web PHP en docker
 tags: [all, Docker, Docker-compose, Debian]
 ---
 # Introducción

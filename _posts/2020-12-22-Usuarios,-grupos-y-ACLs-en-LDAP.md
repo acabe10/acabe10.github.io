@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Usuarios, grupos y ACLs en LDAP
+title: Usuarios y grupos en LDAP
 tags: [all, OpenStack, Toboso, LDAPs, OpenLDAP]
 ---
 # Introducción
@@ -462,52 +462,4 @@ version: 1
 
 dn: uid=adrian,ou=People,dc=freston,dc=cabezas,dc=gonzalonazareno,dc=org
 memberOf: cn=comercial,ou=Group,dc=freston,dc=cabezas,dc=gonzalonazareno,dc=org
-~~~
-
-## Crea las ACLs necesarias para que los usuarios del grupo almacen puedan ver todos los atributos de todos los usuarios pero solo puedan modificar las suyas.
-
-Creamos el siguiente fichero:
-
-~~~
-nano acl_almacen.ldif
-~~~
-
-Y le añadimos el siguiente contenido:
-
-~~~
-dn: olcDatabase={1}mdb,cn=config
-changetype: modify
-add: olcAccess
-olcAccess: {3}to dn.regex="uid=[a-zA-z0-9]*,ou=People,dc=freston,dc=cabezas,dc=gonzalonazareno, dc=org"
- by self write
-~~~
-
-Importamos:
-
-~~~
-sudo ldapmodify -Y EXTERNAL -H ldapi:/// -f acl_almacen.ldif
-~~~
-
-## Crea las ACLs necesarias para que los usuarios del grupo admin puedan ver y modificar cualquier atributo de cualquier objeto.
-
-Creamos el siguiente fichero:
-
-~~~
-nano acl_admin.ldif
-~~~
-
-Y le añadimos el siguiente contenido:
-
-~~~
-dn: olcDatabase={1}mdb,cn=config
-changetype: modify
-add: olcAccess
-olcAccess: {3}to *
- by dn.member="cn=admin,ou=Group,dc=freston,dc=cabezas,dc=gonzalonazareno,dc=org" write
-~~~
-
-Importamos:
-
-~~~
-sudo ldapmodify -Y EXTERNAL -H ldapi:/// -f acl_admin.ldif
 ~~~
