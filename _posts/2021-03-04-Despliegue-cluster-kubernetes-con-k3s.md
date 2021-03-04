@@ -365,4 +365,4 @@ La siguiente línea:
 
 Y comprobamos:
 
-!1.png!
+![1](/assets/img/posts/k3s/1.png)
