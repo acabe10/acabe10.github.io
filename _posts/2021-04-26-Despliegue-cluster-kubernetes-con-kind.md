@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Despliegue cluster kubernetes con k3s
+title: Despliegue cluster kubernetes con kind
 tags: [all, kubernetes, kind, Debian, k8s]
 ---
 # Introducción
