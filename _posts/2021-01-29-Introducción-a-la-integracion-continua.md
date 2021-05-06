@@ -5,7 +5,7 @@ tags: [all, Integración continua, IC/DC, Despliegue]
 ---
 # Introducción
 
-Buenas, en este post vamos a usar para un despliegue continuo el sitio web de Netlify. Tendremos el escenario que creamos en la [primera práctica](https://acabe10.github.io/2021-02-16-P%C3%A1gina-est%C3%A1tica-con-Github-Pages-y-Jekyll/) y con ello Netlify desplegará a través de Jekyll una página estática en su dominio `netlify.app`:
+Buenas, en este post vamos a usar para un despliegue continuo el sitio web de Netlify. Tendremos el escenario que creamos en la [primera práctica](https://acabe10.github.io/2020-10-19-P%C3%A1gina-est%C3%A1tica-con-Github-Pages-y-Jekyll/) y con ello Netlify desplegará a través de Jekyll una página estática en su dominio `netlify.app`:
 
 # Creación de sitio y despliegue
 
