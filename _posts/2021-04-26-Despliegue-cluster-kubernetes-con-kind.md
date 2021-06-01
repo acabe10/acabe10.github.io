@@ -157,7 +157,7 @@ kind-worker3
 
 ## Interactuando con el cluster
 
-Para hacer diferentes pruebas, hemos instalado la utilidad de `kubectl`:
+Para hacer diferentes pruebas, hemos instalado la utilidad de [kubectl](https://kubernetes.io/docs/tasks/tools/):
 
 ~~~
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
