@@ -169,12 +169,124 @@ Para que `kubectl` se sincronice con `kind` fácilmente, crearemos un clúster n
 Ahora ya podremos interactuar con nuestro cluster:
 
 ~~~
+sudo kind create cluster --config=config.yaml
+~~~
+~~~
 sudo kubectl get nodes
-NAME                  STATUS   ROLES                  AGE   VERSION
-kind-control-plane    Ready    control-plane,master   18m   v1.20.2
-kind-control-plane2   Ready    control-plane,master   18m   v1.20.2
-kind-control-plane3   Ready    control-plane,master   17m   v1.20.2
-kind-worker           Ready    <none>                 15m   v1.20.2
-kind-worker2          Ready    <none>                 15m   v1.20.2
-kind-worker3          Ready    <none>                 15m   v1.20.2
+NAME                 STATUS   ROLES                  AGE     VERSION
+kind-control-plane   Ready    control-plane,master   5m48s   v1.20.2
+kind-worker          Ready    <none>                 5m15s   v1.20.2
+kind-worker2         Ready    <none>                 5m14s   v1.20.2
+~~~
+
+Vamos a desplegar un `nginx` con el siguiente fichero `deployment.yaml`:
+
+~~~
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  namespace: default
+  labels:
+    app: nginx
+spec:
+  revisionHistoryLimit: 2
+  strategy:
+    type: RollingUpdate
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        ports:
+        - name: http
+          containerPort: 80
+~~~
+
+Y su servicio `NodePort` a partir del fichero `service.yaml`:
+
+~~~
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  namespace: default
+spec:
+  type: NodePort
+  ports:
+  - name: http
+    port: 80
+    targetPort: http
+  selector:
+    app: nginx
+~~~
+
+Hacemos el despliegue de ambos y comprobamos que se han creado correctamente:
+
+~~~
+kubectl apply -f deployment.yaml 
+deployment.apps/nginx created
+
+kubectl create -f service.yaml 
+service/nginx created
+
+sudo kubectl get all
+NAME                        READY   STATUS    RESTARTS   AGE
+pod/nginx-bdc5c7d65-46qqz   1/1     Running   0          69s
+pod/nginx-bdc5c7d65-qltfb   1/1     Running   0          69s
+
+NAME                 TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+service/kubernetes   ClusterIP   10.96.0.1      <none>        443/TCP        13m
+service/nginx        NodePort    10.96.91.230   <none>        80:30481/TCP   69s
+
+NAME                    READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/nginx   2/2     2            2           69s
+
+NAME                              DESIRED   CURRENT   READY   AGE
+replicaset.apps/nginx-bdc5c7d65   2         2         2       69s
+~~~
+
+Para poder comprobarlo desde la consola, tendremos que obtener la ip del nodo controlador, para ello:
+
+~~~
+sudo docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' kind-control-plane
+172.18.0.3
+~~~
+
+Y con la ip y el puerto obtenido anteriormente podremos obtener la página generada de `nginx`:
+
+~~~
+curl 172.18.0.3:30481
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
 ~~~
