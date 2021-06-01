@@ -5,13 +5,13 @@ tags: [all, kubernetes, kind, Debian, k8s]
 ---
 # Introducción
 
-Buenas, en este post vamos a hacer un despliegue de un clúster de Kubernetes usando una herramienta bastante sencilla llamada Kind.
+Buenas, en este post vamos a hacer un despliegue de un clúster de Kubernetes usando una herramienta bastante sencilla llamada Kind. Usaremos únicamente un nodo que mediante contenedores creará los `controller` y `worker`
 
 Veremos como podemos escalar nuestro escenario muy fácilmente modificando únicamente un fichero `.yaml`.
 
 ## Escenario a usar
 
-Vamos a usar un escenario con `vagrant`:
+Vamos a usar un escenario con `vagrant` y `kvm` con un único nodo:
 
 ~~~
 Vagrant.configure("2") do |config|
@@ -48,7 +48,7 @@ vagrant ssh kind
 Una vez dentro, antes de instalar `kind`, debemos de instalar `docker`, ya que cada nodo del cluster se va ejecutar en un contenedor, para ello:
 
 ~~~
-sudo apt update && sudo apt install docker.io
+sudo apt update && sudo apt install docker.io -y
 ~~~
 
 Ahora procedemos a la instalación de `kind`:
@@ -157,7 +157,16 @@ kind-worker3
 
 ## Interactuando con el cluster
 
-Para hacer diferentes pruebas, hemos instalado la utilidad de `kubectl`, con la cual podemos comprobar nuestro cluster:
+Para hacer diferentes pruebas, hemos instalado la utilidad de `kubectl`:
+
+~~~
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+~~~
+
+Para que `kubectl` se sincronice con `kind` fácilmente, crearemos un clúster nuevo una vez instalado `kubectl`.
+
+Ahora ya podremos interactuar con nuestro cluster:
 
 ~~~
 sudo kubectl get nodes
@@ -169,4 +178,3 @@ kind-worker           Ready    <none>                 15m   v1.20.2
 kind-worker2          Ready    <none>                 15m   v1.20.2
 kind-worker3          Ready    <none>                 15m   v1.20.2
 ~~~
-
