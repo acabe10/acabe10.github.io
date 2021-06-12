@@ -47,13 +47,13 @@ Las imágenes están hechas de capas ordenadas. Puedes pensar en una capa como u
 
 Si tienes muchas imágenes basadas en capas similares, como Sistema Operativo base o paquetes comunes, entonces todas éstas capas comunes será almacenadas solo una vez.
 
-![container-layers.png](/assets/img/posts/docker-images/container-layers.png)
+![container-layers.jpg](/assets/img/posts/docker-images/container-layers.jpg)
 
 Cuando un nuevo contenedor es creado desde una imagen, todas las capas de la imagen son únicamente de lectura y una delgada capa lectura-escritura es agregada arriba. Todos los cambios efectuados al contenedor específico son almacenados en esa capa.
 
 El contenedor no puede modificar los archivos desde su capa de imagen (que es sólo lectura). Creará una copia del fichero en su capa superior, y desde ese punto en adelante, cualquiera que trate de acceder al archivo obtendrá la copia de la capa superior.
 
-![sharing-layers.png](/assets/img/posts/docker-images/sharing-layers.png)
+![sharing-layers.jpg](/assets/img/posts/docker-images/sharing-layers.jpg)
 
 Por lo tanto cuando creamos un contenedor ocupa muy poco de disco duro, porque las capas de la imagen desde la que se ha creado se comparten con el contenedor:
 
